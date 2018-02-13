@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:45:19 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 09:58:43 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 15:21:16 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_param
 	int		sy;
 	int		error;
 	int		e2;
+	double	zoom;
 
 	int		nb_lines;
 	int		nb_chars;
@@ -75,6 +76,7 @@ typedef struct	s_param
 	char	*argv;
 	int		fd;
 	int		ret;
+	char	*line;
 
 }				t_param;
 

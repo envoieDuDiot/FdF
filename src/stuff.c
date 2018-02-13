@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 10:02:03 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 15:42:49 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,31 @@ void	window_stuff(t_param *p)
 	}
 }
 
+/*void	ft_DIV_MULT(t_param *p, int k)
+{
+	if (k == DIV)
+	{
+		p->zoom -= 1;
+		mlx_clear_window(p->mlx, p->win);
+		drawing(p);
+	}
+	if (k == MULT)
+	{
+		p->zoom += 1;
+		mlx_clear_window(p->mlx, p->win);
+		mlx_destroy_image(p->mlx, p->img);
+		drawing(p);
+	}
+}
+*/
 int		keycool(int k, t_param *p)
 {
 	int i;
 
-	i = p->nb_chars;
+	i = p->ht;
 	if (k == ESC)
 		exit(0);
+//	if (k == DIV || k == MULT)
+//		ft_DIV_MULT(p, k);
 	return (0);
 }

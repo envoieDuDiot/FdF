@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 10:00:32 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 14:50:54 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 int		check_file(t_param *p)
 {
-	char	*line;
 	int		ret;
 
-	line = NULL;
+	p->line = NULL;
 	p->nb_chars = 0;
 	p->nb_lines = 0;
-	while ((ret = get_next_line(p->fd, &line)) > 0)
+	while ((ret = get_next_line(p->fd, &(p->line))) > 0)
 	{
 		if (p->nb_chars == 0)
-			p->nb_chars = count_chars(line);
+			p->nb_chars = count_chars(p->line);
 		else
 		{
-			if (count_chars(line) != p->nb_chars)
+			if (count_chars(p->line) != p->nb_chars)
 			{
 				return (-1);
 			}
@@ -41,19 +40,17 @@ int		check_file(t_param *p)
 
 int		fill_t_pt(t_param *p)
 {
-	char	*line;
 	char	**tab;
 	int		x;
 	int		y;
 	int		i;
 
-	line = NULL;
 	i = 0;
 	y = 0;
-	while ((p->ret = get_next_line(p->fd, &line)) > 0)
+	while ((p->ret = get_next_line(p->fd, &(p->line))) > 0)
 	{
 		x = 0;
-		tab = ft_strsplit(line, ' ');
+		tab = ft_strsplit(p->line, ' ');
 		while (tab[x] != NULL)
 		{
 			p->pt[i].x = x;

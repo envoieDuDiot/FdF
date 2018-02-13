@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 09:49:57 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 15:41:42 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_pt	*iso_to_screen(t_param *p)
 		p->pt[i].x = (p->pt[i].x * p->tw) / 2;
 		p->pt[i].y = p->pt[i].y * p->th;
 		isox = p->pt[i].x - p->pt[i].y;
-		isoy = ((p->pt[i].x + p->pt[i].y) / 2) - (p->pt[i].z * 1.3);
+		isoy = ((p->pt[i].x + p->pt[i].y) / 2) - (p->pt[i].z * p->zoom);
 		p->pt[i].x = isox + p->wh / 2;
 		p->pt[i].y = (isoy + p->ht / 4);
 		i++;
