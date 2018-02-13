@@ -6,18 +6,18 @@
 #    By: gbryon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 17:21:15 by gbryon            #+#    #+#              #
-#    Updated: 2018/01/19 10:38:22 by gbryon           ###   ########.fr        #
+#    Updated: 2018/02/13 08:56:43 by gbryon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: clean fclean re
 
 NAME = libft.a
 
-OK_COL=\033[3;32m
-CLR_COL=\033[3;36m
+OK_COL=\033[32m
+CLR_COL=\033[31m
 END_COL=\033[0m
 
-CCFLAGS = gcc -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror
 
 INC = ./libft.h
 
@@ -55,18 +55,16 @@ all: $(NAME)
 $(NAME):
 			@echo "please wait"
 			@mkdir objs
-			@$(CCFLAGS) -c -I $(INC) $(SRC)
+			@gcc $(FLAG) -c -I $(INC) $(SRC)
 			@ar rc $(NAME) $(OBJS)
 			@mv *.o objs
-			@echo "$(OK_COL)YOUR LIBFT IS READY$(END_COL)"
+			@echo "$(OK_COL)LIBFT IS READY$(END_COL)"
 			@echo "                        .._|________________ _,,_\n			../ ---------------__\n			./_==o _________________|\n			..),--.(_(__)''/'\n			.// () ),--.\n			//___//\n			/--- /. "
 
 clean:
 			@rm -rf objs
-			@echo "$(CLR_COL)YOUR OBJS HAVE BEEN REMOVED$(END_COL)"
 
 fclean: clean
 			@rm -f $(NAME)
-			@echo "$(CLR_COL)YOUR EXECUTABLE HAS BEEN REMOVED$(END_COL)"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/08 17:46:46 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 08:51:12 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ t_pt	*iso_to_screen(t_param *p)
 	int		i;
 	int		isoX;
 	int		isoY;
-	int		chars;
-	int		lines;
-	lines = 0;
 	i = 0;
 	while (i < p->total_chars)
 	{
@@ -64,10 +61,7 @@ void		tracer(t_param *p, t_pt p1, t_pt p2)
 void	drawing(t_param *p)
 {
 	int		i;
-	int		nb_lines;
-	int		nb_chars;
 
-	nb_lines = 0;
 	i = 0;
 	p->pt = iso_to_screen(p);
 	p->data = ft_strnew(p->wh * p->ht * 4);

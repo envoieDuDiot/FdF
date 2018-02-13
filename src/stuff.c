@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/08 19:04:12 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 08:52:09 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	window_stuff(t_param *p)
 }
 int		keycool(int k, t_param *p)
 {
+	int i;
+	i = p->nb_chars;
 	if (k == ESC)
 		exit(0);
 	if (k == UP)
