@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:45:19 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/08 18:23:31 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/13 09:58:43 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/libft.h"
 # include "mlx.h"
-
 
 # define ESC 53
 # define UP 126
@@ -37,14 +36,14 @@
 # define MULT 67
 # define DIV 75
 
-typedef struct s_pt
+typedef struct	s_pt
 {
-	float		x;
-	float		y;
-	float		z;
+	float	x;
+	float	y;
+	float	z;
 }				t_pt;
 
-typedef struct s_param
+typedef struct	s_param
 {
 	void	*mlx;
 	void	*win;
@@ -75,17 +74,18 @@ typedef struct s_param
 
 	char	*argv;
 	int		fd;
+	int		ret;
 
-}			t_param;
+}				t_param;
 
-t_pt	*iso_to_screen(t_param *param);
-void	fill_pix(t_param *param, int x, int y);
-void	tracer(t_param *param, t_pt p1, t_pt p2);
-void	drawing(t_param *p);
-void	mlx_stuff(t_param *p);
-void	window_stuff(t_param *p);
-int		keycool(int keycode, t_param *p);
-int		count_chars(char *line);
-void	initial(t_param *p);
+t_pt			*iso_to_screen(t_param *param);
+void			fill_pix(t_param *param, int x, int y);
+void			tracer(t_param *param, t_pt p1, t_pt p2);
+void			drawing(t_param *p);
+void			mlx_stuff(t_param *p);
+void			window_stuff(t_param *p);
+int				keycool(int keycode, t_param *p);
+int				count_chars(char *line);
+void			initial(t_param *p);
 
 #endif
