@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:45:19 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 15:21:16 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/15 10:21:03 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@
 
 typedef struct	s_pt
 {
-	float	x;
-	float	y;
-	float	z;
+	int		x;
+	int		y;
+	int		z;
 }				t_pt;
 
 typedef struct	s_param

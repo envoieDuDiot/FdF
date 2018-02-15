@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 15:20:21 by gbryon            #+#    #+#             */
-/*   Updated: 2018/01/24 15:48:04 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/15 11:44:49 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define F_MAX_FD 1196434
-# define BUFF_SIZE 8
+# define BUFF_SIZE 40
 
 typedef struct		s_list
 {

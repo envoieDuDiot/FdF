@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 15:41:42 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/15 14:45:45 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	drawing(t_param *p)
 
 	i = 0;
 	p->pt = iso_to_screen(p);
-	p->data = ft_strnew(p->wh * p->ht * 4);
 	p->data = mlx_get_data_addr(p->img, &p->bpp, &p->sz_ln, &p->endian);
 	while (i < p->total_chars)
 	{

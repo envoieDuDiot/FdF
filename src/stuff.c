@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/13 15:42:49 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/15 14:48:32 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ void	mlx_stuff(t_param *p)
 
 void	window_stuff(t_param *p)
 {
-	p->wh = p->nb_chars * 42;
-	p->ht = p->nb_lines * 28;
+	p->wh = p->nb_chars * 60;
+	p->ht = p->nb_lines * 55;
 	p->tw = 48;
 	p->th = 32;
 	while (p->wh > 2200 || p->ht > 1200)
 	{
-		p->wh /= 1.1;
-		p->ht /= 1.1;
+		p->wh *= 0.8;
+		p->ht *= 0.8;
 	}
 	while ((p->tw * p->nb_chars) > p->wh || (p->th * p->nb_lines) > p->ht)
 	{
-		p->tw /= 2;
-		p->th /= 2;
+		p->tw /= 2.2;
+		p->th /= 2.2;
 	}
 }
 
