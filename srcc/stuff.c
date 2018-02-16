@@ -6,20 +6,20 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/16 14:13:38 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/16 13:45:44 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	mlx_stuff(t_param *p)
+/*void	mlx_stuff(t_param *p)
 {
 	p->mlx = mlx_init();
 	p->win = mlx_new_window(p->mlx, p->wh, p->ht, "FdF");
 	p->img = mlx_new_image(p->mlx, p->wh, p->ht);
 	p->data = mlx_get_data_addr(p->img, &p->bpp, &p->sz_ln, &p->endian);
 }
-
+*/
 void	window_stuff(t_param *p)
 {
 	p->wh = p->nb_chars * 60;
@@ -38,7 +38,7 @@ void	window_stuff(t_param *p)
 	}
 }
 
-int		keycool(int k, t_param *p)
+/*int		keycool(int k, t_param *p)
 {
 	int i;
 
@@ -48,4 +48,4 @@ int		keycool(int k, t_param *p)
 //	if (k == DIV || k == MULT)
 //		ft_DIV_MULT(p, k);
 	return (0);
-}
+}*/

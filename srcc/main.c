@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/16 14:13:18 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/16 13:58:15 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,25 @@ int		parsing(t_param *p)
 	return (0);
 }
 
+void		expose_hook(t_param *p)
+{
+	mlx_clear_window(p->mlx, p->win);
+	p->img = mlx_new_window(p->mlx,p->wh,p->ht, "FdF");
+	p->data = mlx_get_data_addr(p->img, &p->bpp, &p->sz_ln, &p->endian);
+	drawing(p);
+	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+}
+
+int		keycool(int k, t_param *p)
+{
+	if (k == ESC)
+		exit(0);
+	if (k == PLUS)
+		p->zoom += 1;
+	expose_hook(p);
+	return (0);
+}
+
 int		main(int ac, char **av)
 {
 	t_param		*p;
@@ -96,9 +115,12 @@ int		main(int ac, char **av)
 			return (0);
 		}
 		window_stuff(p);
-		mlx_stuff(p);
-		drawing(p);
+//		mlx_stuff(p);
+		p->mlx = mlx_init();
+		p->win = mlx_new_window(p->mlx, p->wh, p->ht, "FdF");
 		mlx_key_hook(p->win, keycool, p->mlx);
+		expose_hook(p);
+//		drawing(p);
 		mlx_loop(p->mlx);
 	}
 	return (0);
