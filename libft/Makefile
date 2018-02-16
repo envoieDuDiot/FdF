@@ -6,7 +6,7 @@
 #    By: gbryon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 17:21:15 by gbryon            #+#    #+#              #
-#    Updated: 2018/02/13 08:56:43 by gbryon           ###   ########.fr        #
+#    Updated: 2018/02/16 12:28:29 by gbryon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: clean fclean re
@@ -53,12 +53,11 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-			@echo "please wait"
 			@mkdir objs
 			@gcc $(FLAG) -c -I $(INC) $(SRC)
 			@ar rc $(NAME) $(OBJS)
 			@mv *.o objs
-			@echo "$(OK_COL)LIBFT IS READY$(END_COL)"
+			@echo "$(OK_COL)\t\tLIBFT IS READY$(END_COL)"
 			@echo "                        .._|________________ _,,_\n			../ ---------------__\n			./_==o _________________|\n			..),--.(_(__)''/'\n			.// () ),--.\n			//___//\n			/--- /. "
 
 clean:

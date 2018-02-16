@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/15 14:48:32 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/15 17:05:40 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ void	mlx_stuff(t_param *p)
 	p->mlx = mlx_init();
 	p->win = mlx_new_window(p->mlx, p->wh, p->ht, "FdF");
 	p->img = mlx_new_image(p->mlx, p->wh, p->ht);
+	p->data = mlx_get_data_addr(p->img, &p->bpp, &p->sz_ln, &p->endian);
 }
 
 void	window_stuff(t_param *p)
 {
 	p->wh = p->nb_chars * 60;
 	p->ht = p->nb_lines * 55;
-	p->tw = 48;
-	p->th = 32;
+	p->tw = 64;
+	p->th = 48;
 	while (p->wh > 2200 || p->ht > 1200)
 	{
 		p->wh *= 0.8;
@@ -37,23 +38,6 @@ void	window_stuff(t_param *p)
 	}
 }
 
-/*void	ft_DIV_MULT(t_param *p, int k)
-{
-	if (k == DIV)
-	{
-		p->zoom -= 1;
-		mlx_clear_window(p->mlx, p->win);
-		drawing(p);
-	}
-	if (k == MULT)
-	{
-		p->zoom += 1;
-		mlx_clear_window(p->mlx, p->win);
-		mlx_destroy_image(p->mlx, p->img);
-		drawing(p);
-	}
-}
-*/
 int		keycool(int k, t_param *p)
 {
 	int i;
