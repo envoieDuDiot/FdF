@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:45:19 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/16 14:13:14 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/20 16:47:23 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ typedef struct	s_param
 	int		sy;
 	int		error;
 	int		e2;
+
+	int		on;
+	int		alt;
+	int		ud;
+	int		lr;
 	double	zoom;
 
 	int		nb_lines;
@@ -72,6 +77,7 @@ typedef struct	s_param
 	int		th;
 
 	t_pt	*pt;
+	t_pt	*ptbfr;
 
 	char	*argv;
 	int		fd;
@@ -80,7 +86,7 @@ typedef struct	s_param
 
 }				t_param;
 
-t_pt			*iso_to_screen(t_param *param);
+void			iso_to_screen(t_param *param);
 void			fill_pix(t_param *param, int x, int y);
 void			tracer(t_param *param, t_pt p1, t_pt p2);
 void			drawing(t_param *p);
@@ -89,5 +95,8 @@ void			window_stuff(t_param *p);
 int				keycool(int keycode, t_param *p);
 int				count_chars(char *line);
 void			initial(t_param *p);
+void			init_bonus(t_param *p);
+int				parsing(t_param *p);
+void			refresh(t_param *p);
 
 #endif
