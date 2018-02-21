@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/20 16:50:30 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/21 14:06:12 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	mlx_stuff(t_param *p)
 void	init_bonus(t_param *p)
 {
 	p->on = 1;
-	p->alt = 2;
+	p->alt = 1;
 	p->lr = 0;
 	p->ud = 0;
 	p->zoom = 0;
@@ -109,9 +109,12 @@ int		main(int ac, char **av)
 {
 	t_param		*p;
 
-	if (!(p = malloc(sizeof(t_param))))
+	if (!(p = malloc(sizeof(t_param))) || !(p->pt = malloc(sizeof(p->pt))) ||
+			!(p->mlx = mlx_init()))
+	{
+		printf("dommage");
 		return (EXIT_FAILURE);
-	p->mlx = mlx_init();
+	}
 	if (ac == 2)
 	{
 		initial(p);

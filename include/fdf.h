@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:45:19 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/20 16:47:23 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/21 13:39:04 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@
 # define LEFT 123
 # define RIGHT 124
 # define ZERO 82
-# define ONE 83
-# define TWO 84
-# define THREE 85
-# define FOUR 86
-# define FIVE 87
-# define SIX 88
-# define SEVEN 89
-# define EIGHT 91
-# define NINE 92
 # define PLUS 69
 # define MINUS 78
 # define MULT 67
@@ -38,9 +29,9 @@
 
 typedef struct	s_pt
 {
-	int		x;
-	int		y;
-	int		z;
+	double	x;
+	double	y;
+	double	z;
 }				t_pt;
 
 typedef struct	s_param
@@ -61,11 +52,14 @@ typedef struct	s_param
 	int		error;
 	int		e2;
 
-	int		on;
-	int		alt;
-	int		ud;
-	int		lr;
+	double	on;
+	double	alt;
+	double	ud;
+	double	lr;
 	double	zoom;
+	double	r;
+	double	g;
+	double	b;
 
 	int		nb_lines;
 	int		nb_chars;

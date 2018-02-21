@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/20 16:31:45 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/21 13:39:56 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ void	iso_to_screen(t_param *p)
 
 void	fill_pix(t_param *p, int x, int y)
 {
-	p->data[(y * (p->sz_ln)) + (4 * x)] = 0x20;
-	p->data[(y * (p->sz_ln)) + (4 * x) + 1] = 0xFF;
-	p->data[(y * (p->sz_ln)) + (4 * x) + 2] = 0x10;
+	if (((y * p->sz_ln) + (4 * x) + 2) > (y * (p->sz_ln))
+		&& ((y * p->sz_ln) + (4 * x) + 2) > 0 
+		&& ((y * p->sz_ln) + (4 * x) + 2) < (4 * p->wh * p->ht)
+		&& ((y * (p->sz_ln)) + (4 * x) + 2) < (y + 1) * (p->sz_ln))
+	{
+		p->data[(y * p->sz_ln) + (4 * x) + 1] = 0x00;
+		p->data[(y * p->sz_ln) + (4 * x) + 1] = 0xFF;
+		p->data[(y * p->sz_ln) + (4 * x) + 2] = 0x00;
+	}
 }
 
 void	tracer(t_param *p, t_pt p1, t_pt p2)
@@ -68,9 +74,9 @@ void	drawing(t_param *p)
 	{
 		if (p->pt[i + 1].x && i < p->total_chars)
 			tracer(p, p->pt[i], p->pt[i + 1]);
-		if (i + p->nb_chars < p->total_chars)
+		if (i + p->nb_chars < p->total_chars && !(i % p->nb_chars == 0 &&
+					p->pt[i + 1].x == 0) && p->pt[i + 1].x != 1)
 			tracer(p, p->pt[i + p->nb_chars], p->pt[i]);
 		i++;
 	}
-//	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 }
