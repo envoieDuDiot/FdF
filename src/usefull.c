@@ -29,3 +29,20 @@ int		count_chars(char *line)
 	}
 	return (nb_chars);
 }
+
+void	mlx_stuff(t_param *p)
+{
+	p->win = mlx_new_window(p->mlx, p->wh, p->ht, "FdF");
+	refresh(p);
+	mlx_hook(p->win, 2, 0, keycool, p);
+	mlx_loop(p->mlx);
+}
+
+void	init_bonus(t_param *p)
+{
+	p->on = 1;
+	p->alt = 1;
+	p->lr = 0;
+	p->ud = 0;
+	p->zoom = 0;
+}

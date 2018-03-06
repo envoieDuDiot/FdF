@@ -34,7 +34,7 @@ void	iso_to_screen(t_param *p)
 void	fill_pix(t_param *p, int x, int y)
 {
 	if (((y * p->sz_ln) + (4 * x) + 2) > (y * (p->sz_ln))
-		&& ((y * p->sz_ln) + (4 * x) + 2) > 0 
+		&& ((y * p->sz_ln) + (4 * x) + 2) > 0
 		&& ((y * p->sz_ln) + (4 * x) + 2) < (4 * p->wh * p->ht)
 		&& ((y * (p->sz_ln)) + (4 * x) + 2) < (y + 1) * (p->sz_ln))
 	{

@@ -6,7 +6,7 @@
 #    By: gbryon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/13 08:42:33 by gbryon            #+#    #+#              #
-#    Updated: 2018/02/13 09:25:05 by gbryon           ###   ########.fr        #
+#    Updated: 2018/03/02 18:12:30 by gbryon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_PATH = ./src/
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 INC_NAME = fdf.h
-SRC_NAME = main.c init.c draw.c stuff.c usefull.c
+SRC_NAME = main.c init.c draw.c stuff.c usefull.c stuff2.c
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))

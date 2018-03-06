@@ -6,65 +6,11 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/21 13:42:16 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/03/02 18:14:50 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-void	move_fdf(t_param *p)
-{
-	int		i;
-
-	i = 0;
-	while (i <= p->total_chars)
-	{
-		p->pt[i].x += p->lr;
-		p->pt[i].y += p->ud;
-		i++;
-	}
-	refresh(p);
-}
-
-void	alt_fdf(t_param *p)
-{
-	int		i;
-
-
-	i = 0;
-	while (i < p->total_chars)
-	{
-		if (p->pt[i].z > 0)
-		{
-			p->pt[i].y -= p->alt;
-		}
-		i++;
-	}
-}
-
-void	zoom_fdf(int k, t_param *p)
-{
-	int		i;
-
-	i = 0;
-	while (i <= p->total_chars)
-	{
-		p->pt[i].x *= p->zoom;
-		p->pt[i].y *= p->zoom;
-		if (k == MINUS)
-		{
-			p->pt[i].x += 100;
-			p->pt[i].y += 100;
-		}
-		if (k == PLUS)
-		{
-			p->pt[i].x -= 100;
-			p->pt[i].y -= 100;
-		}
-		i++;
-	}
-	refresh(p);
-}
 
 void	window_stuff(t_param *p)
 {
@@ -84,6 +30,15 @@ void	window_stuff(t_param *p)
 	}
 }
 
+void	ft_esc(int k, t_param *p)
+{
+	if (k == ESC)
+	{
+		p->on = 0;
+		exit(0);
+	}
+}
+
 int		keycool(int k, t_param *p)
 {
 	int		i;
@@ -93,17 +48,30 @@ int		keycool(int k, t_param *p)
 	p->alt = 1;
 	p->lr = 0;
 	p->ud = 0;
-	if (k == ESC)
-		exit(0);
+	ft_esc(k, p);
 	if (k == ZERO)
 	{
-		free(p->pt);
 		parsing(p);
 		init_bonus(p);
 		p->pt = p->ptbfr;
 		refresh(p);
 	}
-	if (k == UP || k == DOWN || k == LEFT || k == RIGHT || k == DIV || k == MULT)
+	if (k == DIV || k == MULT)
+	{
+		if (k == MULT)
+			p->alt *= 0.8;
+		if (k == DIV)
+			p->alt *= -0.8;
+		alt_fdf(p);
+	}
+	keycool2(k, p);
+	return (0);
+}
+
+void	keycool2(int k, t_param *p)
+{
+	if (k == UP || k == DOWN || k == LEFT
+			|| k == RIGHT || k == DIV || k == MULT)
 	{
 		if (k == UP)
 			p->ud -= 25;
@@ -115,14 +83,6 @@ int		keycool(int k, t_param *p)
 			p->lr += 25;
 		move_fdf(p);
 	}
-	if (k == DIV || k == MULT)
-	{
-		if (k == MULT)
-			p->alt *= 0.8;
-		if (k == DIV)
-			p->alt *= -0.8;
-		alt_fdf(p);
-	}
 	if (k == PLUS || k == MINUS)
 	{
 		p->zoom = 1;
@@ -132,5 +92,4 @@ int		keycool(int k, t_param *p)
 			p->zoom -= 0.2;
 		zoom_fdf(k, p);
 	}
-	return (0);
 }

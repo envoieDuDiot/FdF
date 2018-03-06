@@ -6,7 +6,7 @@
 /*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/21 14:06:12 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/02/28 12:22:42 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		check_file(t_param *p)
 	p->nb_lines = 0;
 	while ((ret = get_next_line(p->fd, &(p->line))) > 0)
 	{
+		if (!(p->line) || p->line[0] == '\0')
+			exit(0);
 		if (p->nb_chars == 0)
 			p->nb_chars = count_chars(p->line);
 		else
@@ -29,6 +31,7 @@ int		check_file(t_param *p)
 				return (-1);
 		}
 		p->nb_lines++;
+		free(p->line);
 	}
 	free(p->line);
 	p->total_chars = (p->nb_chars) * (p->nb_lines);
@@ -68,13 +71,18 @@ int		fill_t_pt(t_param *p)
 
 int		parsing(t_param *p)
 {
-	p->fd = open(p->argv, O_RDONLY);
+	if ((p->fd = open(p->argv, O_RDONLY)) == -1)
+	{
+		ft_putendl("wrong file\nenter a map.fdf");
+		return (-1);
+	}
 	if (check_file(p) == -1)
 		return (-1);
 	close(p->fd);
 	p->fd = open(p->argv, O_RDONLY);
 	if (fill_t_pt(p) == -1)
 		return (-1);
+	free(p->line);
 	p->ptbfr = p->pt;
 	return (0);
 }
@@ -88,42 +96,52 @@ void	refresh(t_param *p)
 	mlx_destroy_image(p->mlx, p->img);
 }
 
-void	mlx_stuff(t_param *p)
+void check_ext(t_param *p)
 {
-	p->win = mlx_new_window(p->mlx, p->wh, p->ht, "FdF");
-	refresh(p);
-	mlx_hook(p->win, 2, 0, keycool, p);
-	mlx_loop(p->mlx);
+	int i;
+
+	i = 0;
+	while (p->argv[i])
+	{
+		if (p->argv[i] == '.' && p->argv[i + 1] == 'f')
+		{
+			if (p->argv[i + 2] == 'd' && p->argv[i + 3] == 'f')
+				break ;
+			else
+			{
+				ft_putendl("wrong file\nenter a map.fdf");
+				exit(0);
+			}
+		}
+		i++;
+	}
 }
 
-void	init_bonus(t_param *p)
+void check_ac(int ac)
 {
-	p->on = 1;
-	p->alt = 1;
-	p->lr = 0;
-	p->ud = 0;
-	p->zoom = 0;
+	if (ac < 2 || ac > 2)
+	{
+		ft_putendl("enter a map.fdf");
+		exit (0);
+	}
 }
 
 int		main(int ac, char **av)
 {
 	t_param		*p;
 
-	if (!(p = malloc(sizeof(t_param))) || !(p->pt = malloc(sizeof(p->pt))) ||
-			!(p->mlx = mlx_init()))
-	{
-		printf("dommage");
+	if (!(p = malloc(sizeof(t_param)))
+	|| !(p->mlx = mlx_init()))
 		return (EXIT_FAILURE);
-	}
+	p->pt = NULL;
+	check_ac(ac);
 	if (ac == 2)
 	{
 		initial(p);
 		p->argv = av[1];
+		check_ext(p);
 		if (parsing(p) == (-1))
-		{
-			ft_putendl("parsing KO");
 			return (0);
-		}
 		window_stuff(p);
 		init_bonus(p);
 		mlx_stuff(p);
