@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gbryon <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: gbryon <gbryon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/13 08:42:33 by gbryon            #+#    #+#              #
-#    Updated: 2018/03/02 18:12:30 by gbryon           ###   ########.fr        #
+#    Updated: 2018/03/07 09:51:25 by gbryon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		@echo
 		@make -C $(LFT_PATH)
-		@gcc -o $(NAME) $(FRAM) -L $(LFT_PATH) -lft $^ -o $@ 
+		@gcc -o $(NAME) $(FRAM) -L $(LFT_PATH) -lft $^ -o $@
 		@echo "$(OKC)$(NAME) CREATED & READY$(END)"
 		@echo "		            ZZZZZZZZZZZZZZZZZZZZZ\n		          ZZZZZ              ZZZZZZ\n		        ZZZZZ                    ZZZZ\n		      ZZZZZ                       ZZZZZ\n		    ZZZZZ                           ZZZZ\n		   ZZZZ                              ZZZZ\n		  ZZZ                                  ZZZ\n		 ZZZ                                    ZZZ\n		ZZZZ                                    ZZZ\n		ZZZ                                     ZZZ\n		ZZZ                                     ZZZ\n		ZZZ                                     ZZZ\n		ZZZ                             ZZ      ZZZ\n		ZZZ                           ZZZZZ     ZZZ\n		ZZZ                        ZZZZZZZZZ  ZZZZZ\n		ZZZZ    ZZZ              ZZZZZZZZZZZZ ZZZZ\n		ZZZZ   ZZZZZZ           ZZZZZZZZZZZZZ ZZZ\n		ZZZZ  ZZZZZZZZZZ       ZZZZZZZZZZZZZ  ZZ\n		ZZZZ  ZZZZZZZZZZZ      ZZZZZZZZZZZZ   ZZ\n		 ZZZ   ZZZZZZZZZZZ      ZZZZZZZZZZ    ZZ\n		 ZZZ    ZZZZZZZZZ ZZZZZ   ZZZZZZ    ZZZZ\n		  ZZZ    ZZZZZZZ  ZZZZZZ           ZZZZ\n		   ZZZZZ          Z  ZZZ     ZZZZZZZZZ\n		    ZZZZZZZZ          ZZ    ZZZZZZZZ\n		     ZZZZZZZZ             ZZZZZ\n		          ZZZ  Z   Z   Z  ZZZ\n		          ZZZ ZZZ ZZZ ZZZ ZZZ\n		          ZZZ ZZZ ZZZ ZZZ ZZZ\n		          ZZZ ZZZ ZZZ ZZZ ZZZ\n		           ZZZZZZZZZZZZZZZZZ\n		              ZZZZZZZZZZZ"Œ
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 		@mkdir -p $(OBJ_PATH)
 		@gcc $(FLAG) $(INC) -o $@ -c $<
-		@echo -n =
+		@echo "=\c"
 
 clean:
 		@make -C $(LFT_PATH) clean

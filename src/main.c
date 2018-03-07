@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gbryon <gbryon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:28 by gbryon            #+#    #+#             */
-/*   Updated: 2018/02/28 12:22:42 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/03/07 11:15:57 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		check_file(t_param *p)
 	while ((ret = get_next_line(p->fd, &(p->line))) > 0)
 	{
 		if (!(p->line) || p->line[0] == '\0')
-			exit(0);
+			return (EXIT_FAILURE);
 		if (p->nb_chars == 0)
 			p->nb_chars = count_chars(p->line);
 		else
@@ -87,42 +87,12 @@ int		parsing(t_param *p)
 	return (0);
 }
 
-void	refresh(t_param *p)
-{
-	p->img = mlx_new_image(p->mlx, p->wh, p->ht);
-	p->data = mlx_get_data_addr(p->img, &p->bpp, &p->sz_ln, &p->endian);
-	drawing(p);
-	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
-	mlx_destroy_image(p->mlx, p->img);
-}
-
-void check_ext(t_param *p)
-{
-	int i;
-
-	i = 0;
-	while (p->argv[i])
-	{
-		if (p->argv[i] == '.' && p->argv[i + 1] == 'f')
-		{
-			if (p->argv[i + 2] == 'd' && p->argv[i + 3] == 'f')
-				break ;
-			else
-			{
-				ft_putendl("wrong file\nenter a map.fdf");
-				exit(0);
-			}
-		}
-		i++;
-	}
-}
-
-void check_ac(int ac)
+void	check_ac(int ac)
 {
 	if (ac < 2 || ac > 2)
 	{
 		ft_putendl("enter a map.fdf");
-		exit (0);
+		exit(0);
 	}
 }
 
@@ -130,8 +100,7 @@ int		main(int ac, char **av)
 {
 	t_param		*p;
 
-	if (!(p = malloc(sizeof(t_param)))
-	|| !(p->mlx = mlx_init()))
+	if (!(p = malloc(sizeof(t_param))))
 		return (EXIT_FAILURE);
 	p->pt = NULL;
 	check_ac(ac);

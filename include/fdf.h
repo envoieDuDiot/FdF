@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbryon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gbryon <gbryon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:45:19 by gbryon            #+#    #+#             */
-/*   Updated: 2018/03/02 18:31:00 by gbryon           ###   ########.fr       */
+/*   Updated: 2018/03/07 11:31:47 by gbryon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ void			zoom_fdf(int k, t_param *p);
 void			alt_fdf(t_param *p);
 void			move_fdf(t_param *p);
 void			initial(t_param *p);
+void			check_ext(t_param *p);
+void			mouse_hook(int k, int x, int y, t_param *p);
 
 #endif
